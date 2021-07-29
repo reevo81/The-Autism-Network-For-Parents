@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Autism Network for Parents</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">The Autism Network for Parents
+  <img src="img/Autism_infinity_awareness_symbol.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="store.html">Store</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="forum.html">Forum</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="card.html">Cards</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="games.html">Games</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="helpfulLinks.html">Help</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Profile</a>
+      </li>
+    </ul>
+  </div>  
+</nav>
+
+    <!-- Main Page Conent -->   
+      <nav class="navbar navbar-dark">
+          <form class="form-inline">
+         <input type="text" class="form-control  ml-2 mr-3 mt-4 mb-4 mb-sm-0" placeholder="search">
+         <button type="submit" class="btn btn-dark col text-center ml-2 mr-2 mb-4 mt-2">Search</button>
+          </form>
+      </nav>
+  
+    <div class="col-sm-10">
+         <p>
+            <a class="btn btn-dark d-flex justify-content-center ml-2 mr-4 mt-4 mb-5" data-toggle="collapse" href="#collapseNewPost" role="button" aria-expanded="false" aria-controls="collapseExample">
+                New Post
+            </a>
+        </p>
+        <div class="row">
+            <div class="col">
+                <div class="collapse" id="collapseNewPost">
+                    <div class="card card-body">
+                        <div class="panel panel-default">
+                            <form class="form-inline">
+                                Create Post
+                                <input type="text" class="form-control  ml-2 mr-1 mt-4 mb-4 mb-sm-0" id="postTitle" placeholder="Post Title">
+                                <textarea id="postContent" rows="4" cols="50" placeholder="Post Content"></textarea>
+                                <button type="submit" class="btn btn-dark col text-center ml-2 mr-2 mb-4 mt-2" id="createPostButton">Create Post</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <ul id="postTable">Posts</ul>
+
+    
+    <div class="row">
+      <div class="col-12 col-xl-9">
+      <table class="table table-striped table-bordered table-responsive">
+          <thead class="thead-light">
+              <tr>
+                  <th scope="col" class="forum-col">Forum</th>
+                  <th scope="col">Posts</th>
+                  <th scope="col" class="last-post-col">Posted By</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>
+                <h3 class="h5 mb-0"><a href="#">Post Name</a></h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur 
+                  adipisicing elit. Velit, praesentium?</p>
+                  </td>
+                  <td>2</td>
+                  <td>
+                      <div><a href="#">Author Name</a></div>
+                      <div> 24/06/2021, 12:11</div>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                <h3 class="h5 mb-0"><a href="#">Post Name</a></h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur 
+                  adipisicing elit. Velit, praesentium?</p>
+                  </td>
+                  <td>30</td>
+                  <td>
+                      <div><a href="#">Author Name</a></div>
+                      <div> 24/06/2021, 16:11</div>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                <h3 class="h5 mb-0"><a href="#">Post Name</a></h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur 
+                  adipisicing elit. Velit, praesentium?</p>
+                  </td>
+                  <td>30</td>
+                  <td>
+                      <div><a href="#">Author Name</a></div>
+                      <div> 25/06/2021, 09:11</div>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                <h3 class="h5 mb-0"><a href="#">Post Name</a></h3>
+                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur 
+                  adipisicing elit. Velit, praesentium?</p>
+                  </td>
+                  <td>30</td>
+                  <td>
+                      <div><a href="#">Author Name</a></div>
+                      <div> 25/06/2021, 15:15</div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      </div>
+    </div>
+<script>
+        // Your web app's Firebase configuration
+    
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyDPqTbSIgq6fq59y2Fm8udxhMCNKXMbG0k",
+                authDomain: "the-autism-network-for-parents.firebaseapp.com",
+                databaseURL: "https://the-autism-network-for-parents-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "the-autism-network-for-parents",
+                storageBucket: "the-autism-network-for-parents.appspot.com",
+                messagingSenderId: "560021369427",
+                appId: "1:560021369427:web:c88aa38715fc02caaa0ca6",
+                measurementId: "G-8J2EBMPXN0"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            // make sure database is set to merge true to avoid overriding
+			db.settings({ timestampsInSnapshot: true, merge: true });
+</script>
+<script src="js/app.js"></script>
+  </body>
+</html>

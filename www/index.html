@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>The Autism Network for Parents</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <a class="navbar-brand" href="#">The Autism Network for Parents
+                <img src="img/Autism_infinity_awareness_symbol.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="store.html">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="forum.html">Forum</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="card.html">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="helpfulLinks.html">Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Profile</a>
+                    </li>
+                </ul>
+            </div>  
+        </nav>
+
+        <!-- Page Content -->
+        <h1>Sign in with Google</h1>
+        <p>All login information from <a href="https://firebase.google.com/support/privacy">Google</a> is stored and protected in line with <a href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/">GDPR regulations</a></p>
+        <div class="text-center" id="LoginScreen">
+            <button type="button" class="btn btn-secondary btn-lg btn-block" id="login">Login with Google</button>
+
+        </div>
+        <div id="loggingOut">
+            <div id="userDetails"></div>
+            <button id="logout">Logout</button>
+        </div>
+
+
+        <!-- This code comes from Firebase - TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
+        <script>
+        // Your web app's Firebase configuration
+    
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyDPqTbSIgq6fq59y2Fm8udxhMCNKXMbG0k",
+                authDomain: "the-autism-network-for-parents.firebaseapp.com",
+                databaseURL: "https://the-autism-network-for-parents-default-rtdb.europe-west1.firebasedatabase.app",
+                projectId: "the-autism-network-for-parents",
+                storageBucket: "the-autism-network-for-parents.appspot.com",
+                messagingSenderId: "560021369427",
+                appId: "1:560021369427:web:c88aa38715fc02caaa0ca6",
+                measurementId: "G-8J2EBMPXN0"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            db.settings({ timestampsInSnapshot: true, merge: true });
+            firebase.analytics();
+            document.getElementById('loggingOut').style.display = "none"
+
+            document.getElementById('login').addEventListener('click', Login)
+            document.getElementById('logout').addEventListener('click', Logout)
+
+            let provider = new firebase.auth.GoogleAuthProvider()
+
+        // Login
+            function Login() {
+                console.log('Login Call')
+                firebase.auth().signInWithPopup(provider).then(res => {
+                    console.log(res.user)
+                    document.getElementById('LoginScreen').style.display = "none"
+                    document.getElementById('loggingOut').style.display = "block"
+                    showUserDetails(res.user)
+                }).catch(e => {
+                    console.log(e)
+                })
+            }
+        // add new user to the database
+            function addNewUser(user) {
+                db.collection("users").doc("UID").set({
+                    name: "Los Angeles",
+                    state: "CA",
+                    country: "USA"
+                   })
+                .then(() => {
+                console.log("Document successfully written!");
+                })
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                });
+            }
+        // show user details on screen
+            function showUserDetails(user) {
+                  document.getElementById('userDetails').innerHTML = `
+                  <img src="${user.photoURL}" style="width:15%">
+                  <p>User Name: ${user.displayName}</p>
+                  <p>Email Address: ${user.email}</p>    `
+            }
+        // check fro state change
+            function checkAuthState() {
+                firebase.auth().onAuthStateChanged(user => {
+                    if (user) {
+                        document.getElementById('LoginScreen').style.display = "none"
+                        document.getElementById('loggingOut').style.display = "block"
+                        showUserDetails(user)
+                    } else {
+                        console.log('No user found')
+                    }
+                })
+            }
+        // Logout
+            function Logout() {
+                console.log('Logout Call')
+                firebase.auth().signOut().then(() => {
+                    document.getElementById('LoginScreen').style.display = "block"
+                    document.getElementById('loggingOut').style.display = "none"
+                }).catch(e => {
+                    console.log(e)
+                })
+            }
+            checkAuthState()
+        </script>  
+    </body>
+</html>
