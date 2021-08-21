@@ -10,8 +10,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <!-- The core Firebase JS SDK is always required and must be listed first -->
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
         <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
     </head>
     <body>
@@ -92,7 +92,7 @@
         // Login
             function Login() {
                 console.log('Login Call')
-                firebase.auth().signInWithPopup(provider).then(res => {
+                firebase.auth().signInWithRedirect(provider).then(res => {
                     console.log(res.user)
                     document.getElementById('LoginScreen').style.display = "none"
                     document.getElementById('loggingOut').style.display = "block"
