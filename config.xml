@@ -2,7 +2,7 @@
 <widget id="com.example.hello" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>The Autism Parents Network</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+       An app for parents of autistic children
     </description>
     <author email="reevoorourke@gmail.com" href="http://cordova.io">
         Steven O'Rourke

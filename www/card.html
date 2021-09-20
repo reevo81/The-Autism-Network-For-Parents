@@ -10,38 +10,39 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#">The Autism Network for Parents
-  <img src="img/Autism_infinity_awareness_symbol.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="store.html">Store</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="forum.html">Forum</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="card.html">Cards</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="games.html">Games</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="helpfulLinks.html">Help</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="index.html">Profile</a>
-      </li>
-    </ul>
-  </div>  
-</nav>
+<!-- The main navbar menu -->
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	  <a class="navbar-brand" href="index.html">The Autism Network for Parents
+	  <img src="img/Autism_infinity_awareness_symbol.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+	  </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+		<ul class="navbar-nav">
+		  <li class="nav-item">
+			<a class="nav-link" href="store.html">Store</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="forum.html">Forum</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="card.html">Cards</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="games.html">Games</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="helpfulLinks.html">Help</a>
+		  </li>
+		  <li class="nav-item">
+			<a class="nav-link" href="index.html">Profile</a>
+		  </li>
+		</ul>
+	  </div>  
+	</nav>
   
-<!-- Page Content -->
+<!-- Cue Cards Content -->
 <div class="container">
 
   <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Cue Cards</h1>
@@ -98,7 +99,7 @@
   <!-- Modal Content (The Image) -->
   <img class="modal-content" id="img01">
 
-  <!-- Modal Caption (Image Text) -->
+  <!-- Modal Text -->
   <div id="caption"></div>
 </div>
 
@@ -106,6 +107,7 @@
 </body>
 </html>
 <style type="text/css" rel="stylesheet">
+/* Styling for the cue card images once clicked on */
 
 /* Style the Image Used to Trigger the Modal */
 .cueCards {
@@ -190,6 +192,7 @@
 </style>
 
 <script type="text/javascript">
+// Modal code to open cue cards to full screen
 $(document).ready(function(){
 	// Get the modal
 	var modal = $('#myModal');

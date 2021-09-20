@@ -15,8 +15,9 @@
         <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.0/firebase-ui-auth.css" />
     </head>
     <body>
+	<!-- The main navbar menu -->
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-            <a class="navbar-brand" href="#">The Autism Network for Parents
+            <a class="navbar-brand" href="index.html">The Autism Network for Parents
                 <img src="img/Autism_infinity_awareness_symbol.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -46,13 +47,14 @@
             </div>  
         </nav>
 
-        <!-- Page Content -->
+        <!-- Google Disclaimer -->
         <h1>Sign in with Google</h1>
         <p>All login information from <a href="https://firebase.google.com/support/privacy">Google</a> is stored and protected in line with <a href="https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/">GDPR regulations</a></p>
-        <div class="text-center" id="LoginScreen">
+        <!-- Login Button -->
+		<div class="text-center" id="LoginScreen">
             <button type="button" class="btn btn-secondary btn-lg btn-block" id="login">Login with Google</button>
-
         </div>
+		<!-- Logout Button -->
         <div id="loggingOut">
             <div id="userDetails"></div>
             <button id="logout">Logout</button>
@@ -64,7 +66,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
         <script>
-        // Your web app's Firebase configuration
+        // Web app's Firebase configuration
     
             // For Firebase JS SDK v7.20.0 and later, measurementId is optional
             const firebaseConfig = {
@@ -89,9 +91,8 @@
 
             let provider = new firebase.auth.GoogleAuthProvider()
 
-        // Login
+        // Login function
             function Login() {
-                console.log('Login Call')
                 firebase.auth().signInWithRedirect(provider).then(res => {
                     console.log(res.user)
                     document.getElementById('LoginScreen').style.display = "none"
@@ -101,12 +102,12 @@
                     console.log(e)
                 })
             }
-        // add new user to the database
+        // add new user to the database under users collection (THIS CODE DOES NOT WORK)
             function addNewUser(user) {
                 db.collection("users").doc("UID").set({
-                    name: "Los Angeles",
-                    state: "CA",
-                    country: "USA"
+                    name: ${user.displayName},
+                    emailAddress: ${user.photoURL},
+                    profilePic: ${user.email}
                    })
                 .then(() => {
                 console.log("Document successfully written!");
@@ -115,14 +116,15 @@
                     console.error("Error writing document: ", error);
                 });
             }
-        // show user details on screen
+        // show Google user details on screen
             function showUserDetails(user) {
                   document.getElementById('userDetails').innerHTML = `
                   <img src="${user.photoURL}" style="width:15%">
                   <p>User Name: ${user.displayName}</p>
                   <p>Email Address: ${user.email}</p>    `
             }
-        // check fro state change
+			
+        // check for a change of state
             function checkAuthState() {
                 firebase.auth().onAuthStateChanged(user => {
                     if (user) {
@@ -134,7 +136,8 @@
                     }
                 })
             }
-        // Logout
+			
+        // Logout function
             function Logout() {
                 console.log('Logout Call')
                 firebase.auth().signOut().then(() => {
